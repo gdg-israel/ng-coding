@@ -14,5 +14,5 @@ Live scoring system for the ng-coding session in ng-conf Israel. Author: Uri Sha
 
 ## Development instructions
 
-Run `gulp` and then open `http://localhost:7000` in your web-browser.
+Run `gulp` and then open `http://localhost:7100` in your web-browser.
 
