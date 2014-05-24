@@ -16,6 +16,7 @@ var livereloadPort = process.env.GDG_LIVERELOAD_PORT || 35732;
 
 var paths = {
 	styles: ['web/styles/*.scss'],
+	scripts: ['web/scripts/**/*.js'],
 	html: ['web/*.html']
 };
 
@@ -49,7 +50,7 @@ gulp.task('watch', function () {
 		.pipe(gulp.dest(build.styles))
 		.pipe(lrserver);
 
-	gulp.src(paths.html)
+	gulp.src([].concat(paths.html, paths.scripts))
 		.pipe(watch())
 		.pipe(lrserver);
 });
