@@ -1,0 +1,16 @@
+{
+    "name": "api",
+    "description": "ng-coding api",
+    "version": "0.1.0",
+    "scripts": {
+        "test": "mocha -R spec test/**/*.js test/*.js"
+    },
+    "private": true,
+    "author": {
+        "name": "Ran Mizrahi",
+        "email": "ran@cocycles.com"
+    },
+    "engines": {
+        "node": "~0.10.x"
+    }
+}
