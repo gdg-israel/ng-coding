@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation" ng-controller="HeaderCtrl">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle">
@@ -16,7 +16,7 @@
 				<li><a ui-sref="contributions">Contributions</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				{{user.name}} | {{user.score}}
+				{{user.user}} | {{user.score}}
 			</ul>
 		</div>
 	</div>
