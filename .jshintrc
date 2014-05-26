@@ -21,6 +21,7 @@
 	"maxdepth": 2,
 	"maxcomplexity": 10,
 	"globals": {
-		"angular": false
+		"angular": false,
+		"ngCoding": false
 	}
 }
