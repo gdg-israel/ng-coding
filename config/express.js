@@ -8,12 +8,11 @@ var express = require('express'),
 passport.use(new GitHubStrategy({
         clientID: 'd556908ffc281010f7df',
         clientSecret: '0aa961cc85070819c6aa640ab28d95b9e2754de1',
-        callbackURL: "http://ng-coding.gdg.co.il/user/callback"
+        callbackURL: "http://ng-coding.gdg.co.il/auth/github/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-        User.findOrCreate({ githubId: profile.id }, function (err, user) {
-            return done(err, user);
-        });
+        console.log(accessToken, refreshToken, profile);
+        done();
     }
 ));
 

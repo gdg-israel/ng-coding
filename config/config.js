@@ -11,7 +11,10 @@ var config = {
             name: 'ng-coding'
         },
         port: 3000,
-        db: 'mongodb://localhost/ng-coding'
+        db: 'mongodb://localhost/ng-coding',
+        github: {
+            clientID: 'd556908ffc281010f7df'
+        }
     },
 
     test: {

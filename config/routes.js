@@ -15,11 +15,9 @@ module.exports = function(app){
 //
 //    app.put('/contributions/:contibId')
 
-    app.get('/auth/github',
-        passport.authenticate('github'));
+    app.get('/auth/github', passport.authenticate('github'));
 
-    app.get('/auth/github/callback',
-        passport.authenticate('github', { failureRedirect: '/' }),
+    app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
         function(req, res) {
             // Successful authentication, redirect home.
             res.redirect('/');
