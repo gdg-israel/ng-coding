@@ -23,7 +23,7 @@ var express = require('express'),
             cluster.fork();
         }
 
-        cluster.on('exit', function(worker, code, signal) {
+        cluster.on('exit', function(worker) {
             console.log('worker ' + worker.process.pid + ' died');
             cluster.fork();
         });
@@ -52,6 +52,6 @@ var express = require('express'),
     require('./config/routes')(app);
 
     app.listen(config.port, function() {
-        console.log('server is listening to port ' + config.port)
+        console.log('server is listening to port ' + config.port);
     });
 }());
