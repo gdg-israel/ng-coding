@@ -48,7 +48,8 @@ var express = require('express'),
         require(modulesPath + '/' + dir);
     });
 
-    require('./config/express')(app, config);
+	app.use(express.static('web'));
+	require('./config/express')(app, config);
     require('./config/routes')(app);
 
     app.listen(config.port, function() {
