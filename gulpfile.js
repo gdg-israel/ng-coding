@@ -36,10 +36,7 @@ gulp.task('serve', ['sass'], function () {
 	app.use(connectLivereload({
 		port: livereloadPort
 	}));
-	var config = require('./config/config');
-	app.use(express.static('web'));
-	require('./config/express')(app, config);
-	require('./config/routes')(app);
+	app.use(require('./src/app')());
 	app.listen(serverPort);
 });
 

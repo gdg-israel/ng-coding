@@ -1,58 +1,36 @@
 'use strict';
 
-var express = require('express'),
-    mongoose = require('mongoose'),
-    fs = require('fs'),
-    config = require('./config/config'),
-    cluster = require('cluster'),
-    app = express(),
-    numCPUs = require('os').cpus().length;
+var config = require('./config/config'),
+	express = require('express'),
+	cluster = require('cluster'),
+	numCPUs = require('os').cpus().length;
 
 /**
  * Bootstrapping service
  */
-(function() {
+(function () {
 
-    /**
-     * Fork processes on production environment
-     */
-    var i;
+	/**
+	 * Fork processes on production environment
+	 */
+	var i;
 
-    if (cluster.isMaster && app.get('env') !== 'development') {
-        for (i = 0; i < numCPUs; i++) {
-            cluster.fork();
-        }
+	if (cluster.isMaster && express().get('env') !== 'development') {
+		for (i = 0; i < numCPUs; i++) {
+			cluster.fork();
+		}
 
-        cluster.on('exit', function(worker) {
-            console.log('worker ' + worker.process.pid + ' died');
-            cluster.fork();
-        });
+		cluster.on('exit', function (worker) {
+			console.log('worker ' + worker.process.pid + ' died');
+			cluster.fork();
+		});
 
-        return;
-    }
+		return;
+	}
 
-    mongoose.connect(config.db);
+	var app = require('./src/app')();
 
-    var db = mongoose.connection,
-        modulesPath = __dirname + '/src';
-
-    db.on('error', function () {
-        throw new Error('unable to connect to database at ' + config.db);
-    });
-
-    fs.readdirSync(modulesPath).forEach(function(dir) {
-        if (dir.indexOf('.') !== -1) {
-            return;
-        }
-
-        require(modulesPath + '/' + dir);
-    });
-
-	app.use(express.static('web'));
-	require('./config/express')(app, config);
-    require('./config/routes')(app);
-
-    app.listen(config.port, function() {
-        console.log('server is listening to port ' + config.port);
-    });
+	app.listen(config.port, function () {
+		console.log('server is listening to port ' + config.port);
+	});
 }());
