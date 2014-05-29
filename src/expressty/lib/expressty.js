@@ -84,8 +84,8 @@ function expressty(req, res, next) {
         respond(500, payload, message, responseCode);
     };
 
-    res.unauthorized = function() {
-        respond(401);
+    res.unauthorized = function(message) {
+        respond(401, null, message);
     };
 
     next();

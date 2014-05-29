@@ -13,17 +13,22 @@ var User = new Schema({
     username: {
         type: String,
         required: true,
-        validate: /^.{4,10}.$/,
         index: {
             unique: true
         }
     },
 
+    fullName: {
+        type: String
+    },
+
     email: {
         type: String,
-        required: true,
-        validate: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
         set: function(email) {
+            if (!email) {
+                return '';
+            }
+
             return email.toLowerCase();
         },
         index: {
@@ -32,11 +37,26 @@ var User = new Schema({
     },
 
     accessToken: {
+        type: String,
+        required: true
+    },
+
+    company: {
         type: String
     },
 
-    refreshToken: {
+    gravatarId: {
         type: String
+    },
+
+    githubUserId: {
+        type: String,
+        required: true
+    },
+
+    score: {
+        type: Number,
+        required: true
     }
 
 }, { versionKey: false, id: false });
@@ -60,15 +80,6 @@ function promise(func) {
 
     return defer.promise;
 }
-
-/**
- * Match the password
- * @param {string} password
- * @returns {q.promise}
- */
-User.methods.isPasswordValid = function(password) {
-    return passwordWrapper.match(password, this.password);
-};
 
 /**
  * Returns a user doc by username

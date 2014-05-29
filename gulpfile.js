@@ -32,12 +32,15 @@ gulp.task('sass', function () {
 });
 
 gulp.task('serve', ['sass'], function () {
-	var server = express();
-	server.use(connectLivereload({
+	var app = express();
+	app.use(connectLivereload({
 		port: livereloadPort
 	}));
-	server.use(express.static('web'));
-	server.listen(serverPort);
+	var config = require('./config/config');
+	app.use(express.static('web'));
+	require('./config/express')(app, config);
+	require('./config/routes')(app);
+	app.listen(serverPort);
 });
 
 gulp.task('watch', function () {
