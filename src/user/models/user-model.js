@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    q = require('Q');
+    q = require('q');
 
 /**
  * User model
