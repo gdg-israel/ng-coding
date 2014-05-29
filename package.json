@@ -41,7 +41,6 @@
     "passport-github": "0.1.5",
     "promise-it": "^0.1.2",
     "q": "1.0.1",
-    "requestify": "0.1.16",
     "socket.io": "1.0.2"
   }
 }
