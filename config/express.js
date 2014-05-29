@@ -24,6 +24,8 @@ module.exports = function(app, config) {
     app.use(express.urlencoded());
     app.use(express.methodOverride());
     app.use(expressty);
+    app.use(express.cookieParser());
+    app.use(express.session({ secret: 'ng-conf-ng-coding' }));
 
     // Passport config
     app.use(passport.initialize());
