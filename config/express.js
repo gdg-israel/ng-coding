@@ -3,17 +3,16 @@
 var express = require('express'),
     passport = require('passport'),
     expressty = require('../src/expressty'),
+    config = require('../config/config'),
+    authCallback = require('../src/user/lib/auth'),
     GitHubStrategy = require('passport-github').Strategy;
 
 passport.use(new GitHubStrategy({
-        clientID: 'd556908ffc281010f7df',
-        clientSecret: '0aa961cc85070819c6aa640ab28d95b9e2754de1',
-        callbackURL: "http://ng-coding.gdg.co.il/auth/github/callback"
+        clientID: config.github.clientId,
+        clientSecret: config.github.clientSecret,
+        callbackURL: config.github.callbackUrl
     },
-    function(accessToken, refreshToken, profile, done) {
-        console.log(accessToken, refreshToken, profile);
-        done();
-    }
+    authCallback
 ));
 
 module.exports = function(app, config) {
@@ -25,6 +24,8 @@ module.exports = function(app, config) {
     app.use(express.urlencoded());
     app.use(express.methodOverride());
     app.use(expressty);
+    app.use(express.cookieParser());
+    app.use(express.session({ secret: process.env.SESSION_SECRET }));
 
     // Passport config
     app.use(passport.initialize());

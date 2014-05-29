@@ -13,7 +13,9 @@ var config = {
         port: 3000,
         db: 'mongodb://localhost/ng-coding',
         github: {
-            clientID: 'd556908ffc281010f7df'
+            clientId: process.env.GITHUB_CLIENT,
+            clientSecret: process.env.GITHUB_SECRET,
+            callbackUrl: 'http://ng-coding.gdg.co.il/auth/github/callback'
         }
     },
 

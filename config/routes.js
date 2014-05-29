@@ -1,11 +1,12 @@
 'use strict';
-var passport = require('passport');
+var passport = require('passport'),
+    userController = require('../src/api/controllers/user-controller');
 
 module.exports = function(app){
 
-//    app.get('/user/:username', userController.getUser);
-//
-//    app.get('/user/current', userController.getCurrentUser);
+//    app.get('/user/:username', userController.user);
+
+    app.get('/user/current', userController.currentUser);
 //
 //    app.post('/user', userController.registerUser);
 //
