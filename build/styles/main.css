@@ -1,0 +1,9 @@
+body {
+  background-color: white; }
+
+.content-green {
+  background-color: lightgreen; }
+
+.header-user-score > li {
+  padding-top: 15px;
+  padding-bottom: 15px; }

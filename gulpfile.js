@@ -28,7 +28,7 @@ gulp.task('sass', function () {
 	gulp.src(paths.styles)
 		.pipe(sass())
 		.pipe(prefix())
-		.pipe(gulp.dest('build/styles'));
+		.pipe(gulp.dest('web/build/styles'));
 });
 
 gulp.task('serve', ['sass'], function () {
