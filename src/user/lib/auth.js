@@ -6,10 +6,14 @@ var mongoose = require('mongoose'),
     passport = require('passport');
 
 passport.serializeUser(function(user, done) {
+    delete user.accessToken;
+
     done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
+    delete user.accessToken;
+
     done(null, user);
 });
 
