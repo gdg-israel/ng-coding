@@ -1,28 +1,27 @@
 'use strict';
 var passport = require('passport'),
-    userController = require('../src/api/controllers/user-controller');
+	userController = require('../src/api/controllers/user-controller');
 
-module.exports = function(app){
+module.exports = function (app) {
 
 //    app.get('/user/:username', userController.user);
 
-    app.get('/user/current', userController.currentUser);
+	app.get('/user/current', userController.currentUser);
 
-    app.get('/leaderboard', userController.leaderboard);
+	app.get('/leaderboard', userController.leaderboard);
 //
 //    app.get('/contributions')
 //
 //    app.put('/contributions/:contibId')
 
-    app.get('/auth/github', passport.authenticate('github'));
+	app.get('/auth/github', passport.authenticate('github'));
 
-    app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
-        function(req, res) {
-            // Successful authentication, redirect to the thank you page.
-            res.redirect('/hack');
-        });
-    app.get('/hack', function (req, res) {
-      // console.log(express.static(__dirname))
-        res.sendfile('./web/hack.html');
-    })
+	app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
+		function (req, res) {
+			// Successful authentication, redirect to the thank you page.
+			res.redirect('/thanks.html');
+		});
+	app.get('/hack', function (req, res) {
+		res.sendfile('./web/hack.html');
+	});
 };
