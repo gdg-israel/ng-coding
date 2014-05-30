@@ -2,28 +2,34 @@
 
 <html>
 	<head>
-		<title>ng-coding Live</title>
+		<title>ng-coding Israel</title>
 		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
 		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
-		<link rel="stylesheet" href="/build/styles/main.css" media="screen" title="no title" charset="utf-8">
-		<link rel="stylesheet" href="/build/styles/leaderboard.css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="build/styles/login.css"/>
 	</head>
 	<body>
-		<div ng-app="gdg-israel.ng-coding">
 
-	<div class="container">
-			<div ng-include="'partials/header.html'"></div>
+		<h1>
+			ng-coding
+		</h1>
 
-				<div ui-view></div>
-			</div>
-	</div>
+		<div class="mini-terminal">
+			<p>
+				Hack on Angular.JS, help solve issues, add features &amp; get prizes!
+			</p>
 
-		<script src="bower_components/angular/angular.js"></script>
-		<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-		<script src="scripts/app.js"></script>
-		<script src="scripts/leaderboard.js"></script>
-		<script src="scripts/header.js"></script>
-		<script src="scripts/services.js"></script>
+			<p>
+				Monday, 2.6, Google Campus TLV. 12:00 to 18:00.<div class="cursor"></div>
+			</p>
+		</div>
 
+		<a class="btn btn-lg btn-primary" href="/auth/github">
+			Register with Github
+			<i class="fa fa-github"></i>
+		</a>
+
+		<div class="footer">
+			<a href="http://ng-conf.gdg.co.il" target="_blank">ng-conf Israel</a>
+		</div>
 	</body>
 </html>
