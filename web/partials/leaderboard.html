@@ -12,7 +12,7 @@
 			<td>
 				<a href="https://github.com/{{entry.username}}">
 					<div id="avatar">
-						<img ng-src="{{gravatarUrl(entry.gravatarId)}}" alt="" />
+						<img ng-src="{{gravatarUrl(entry.gravatarId)}}" alt=""/>
 					</div>
 					{{entry.username}}
 				</a>
@@ -22,7 +22,7 @@
 			<span>
 			{{activities[entry._id].content}}
 			</span>
-			<span>{{activities[entry._id].time}}</span>
+				<span>{{activities[entry._id].time}}</span>
 			</td>
 		</tr>
 	</tbody>
