@@ -1,7 +1,7 @@
 'use strict';
 
 /* globals ngCoding: true */
-var ngCoding = angular.module('gdg-israel.ng-coding', ['ui.router', 'ngCoding.leaderboard', 'ngCoding.services']);
+var ngCoding = angular.module('gdg-israel.ng-coding', ['ui.router', 'ngCoding.leaderboard', 'ngCoding.services', 'urish.promisesToolkit']);
 
 ngCoding
 	.config(function ($stateProvider, $urlRouterProvider) {
