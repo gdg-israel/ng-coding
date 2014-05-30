@@ -10,9 +10,18 @@ angular.module('ngCoding.services', [])
               return $http.get("/user/current")
           },
           all: function () {
-            return $http.get("user/all?next="+usersBuffer).then(function () {
+            var promise = $http.get("user/all?next="+usersBuffer)
+             promise.finally(function () {
               usersBuffer+=10;
             })
+            return promise
           },
+          getGravatarUrl: function (u_id, size) {
+            var suffix = (angular.isDefined(size))? "s=" + size: "";
+            return "http://www.gravatar.com/avatar/" + u_id + "?" + suffix
+          },
+          getProfileUrl: function (username) {
+            return "https://github.com/" + username;
+          }
       }
   })
