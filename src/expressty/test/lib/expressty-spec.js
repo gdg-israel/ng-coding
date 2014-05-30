@@ -1,9 +1,10 @@
 'use strict';
 
+/* global describe, it, beforeEach */
+
 var rewire = require('rewire'),
     expressty = rewire('../../lib/expressty'),
     chai = require('chai'),
-    config = require('../../../../config/config'),
     sinon = require('sinon'),
     sinonChai = require('sinon-chai'),
     expect = chai.expect;

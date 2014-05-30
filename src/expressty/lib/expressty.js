@@ -57,7 +57,7 @@ function expressty(req, res, next) {
      * @param {number} httpCode
      * @param {number} responseCode
      */
-    res.ok = function(payload, message, httpCode, responseCode) {
+    res.ok = function(payload, message, httpCode) {
         httpCode = httpCode || 200;
 
         if (httpCode >= 300 || httpCode < 200) {
