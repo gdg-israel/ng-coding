@@ -1,25 +1,29 @@
 <h3>Top Participants</h3>
 <table class="table leader-board">
-	<tr>
-		<th>Github User</th>
-		<th>Score</th>
-		<th>Last Activity</th>
-	</tr>
-	<tr ng-repeat="entry in usersScore">
-		<td>
-			<a href="https://github.com/{{entry.username}}">
-				<div id="avatar">
-					<img src="{{gravatarUrl(entry.gravatarId)}}" alt="" />
-				</div>
-				{{entry.username}}
-			</a>
-		</td>
-		<td>{{entry.score}}</td>
-		<td>
-		<span>
-		{{activities[entry._id].content}}
-		</span>
-		<span>{{activities[entry._id].time}}</span>
-		</td>
-	</tr>
+	<thead>
+		<tr>
+			<th>Github User</th>
+			<th>Score</th>
+			<th>Last Activity</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="entry in usersScore | orderBy:score:reverse">
+			<td>
+				<a href="https://github.com/{{entry.username}}">
+					<div id="avatar">
+						<img ng-src="{{gravatarUrl(entry.gravatarId)}}" alt="" />
+					</div>
+					{{entry.username}}
+				</a>
+			</td>
+			<td>{{entry.score}}</td>
+			<td>
+			<span>
+			{{activities[entry._id].content}}
+			</span>
+			<span>{{activities[entry._id].time}}</span>
+			</td>
+		</tr>
+	</tbody>
 </table>
