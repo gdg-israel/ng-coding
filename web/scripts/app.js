@@ -8,7 +8,11 @@ ngCoding
 		$stateProvider
 			.state('index', {
 				url: '',
-				templateUrl: 'partials/login.html'
+				templateUrl: 'partials/login.html',
+				controller: function ($scope,$location, User) {
+					if (User.isLoggedIn)
+						$location.path('/leaderboard')
+				}
 			})
 			.state('leaderboard', {
 				url: '/leaderboard',
