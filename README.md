@@ -3,6 +3,8 @@ ng-coding
 
 Live scoring system for the ng-coding session in ng-conf Israel. Author: Uri Shaked, License: MIT.
 
+[![Build Status](https://travis-ci.org/gdg-israel/ng-coding.png?branch=master)](https://travis-ci.org/gdg-israel/ng-coding)
+
 ## Setup instructions
 
 1. Install node.js (version 0.10.0 or newer), npm, git command-line client (version 1.8.4 or newer)
