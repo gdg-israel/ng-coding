@@ -16,7 +16,7 @@ var livereloadPort = process.env.GDG_LIVERELOAD_PORT || 35732;
 
 var paths = {
 	styles: ['web/styles/*.scss'],
-	scripts: ['web/scripts/**/*.js'],
+	scripts: ['web/scripts/**.js'],
 	html: ['web/**/*.html']
 };
 
