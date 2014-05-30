@@ -21,14 +21,14 @@ var paths = {
 };
 
 var build = {
-	styles: 'build/styles'
+	styles: 'web/build/styles'
 };
 
 gulp.task('sass', function () {
 	gulp.src(paths.styles)
 		.pipe(sass())
 		.pipe(prefix())
-		.pipe(gulp.dest('web/build/styles'));
+		.pipe(gulp.dest(build.styles));
 });
 
 gulp.task('serve', ['sass'], function () {
