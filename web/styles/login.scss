@@ -12,7 +12,7 @@ h1 {
 }
 
 .thank-you h1 {
-	margin-bottom:80px;
+	margin-bottom: 80px;
 }
 
 .mini-terminal {
@@ -20,7 +20,7 @@ h1 {
 	margin: 32px auto;
 	text-align: left;
 	min-height: 270px;
-	
+
 	&.invisible {
 		visibility: hidden;
 	}
@@ -31,8 +31,34 @@ p.big {
 	margin: 40px;
 }
 
+div.sponsors {
+	margin-top: 80px;
+	background: white;
+	padding: 20px;
+
+	h2 {
+		color: black;
+		font-weight: bold;
+		margin-bottom: 40px;
+	}
+
+	a {
+		display: inline-block;
+		margin: 0 25px 32px 25px;
+
+		&:first-of-type, &:last-child {
+			display: block;
+		}
+	}
+}
+
 .footer {
 	margin-top: 120px;
+
+	&.big {
+		margin: 50px 0;
+		font-size: 20px;
+	}
 }
 
 @keyframes blink {
@@ -43,7 +69,7 @@ p.big {
 		background: $terminal;
 	}
 	51% {
-		background: rgba(0,0,0,0);
+		background: rgba(0, 0, 0, 0);
 	}
 	100% {
 		background: transparent;
