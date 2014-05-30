@@ -16,19 +16,19 @@ var livereloadPort = process.env.GDG_LIVERELOAD_PORT || 35732;
 
 var paths = {
 	styles: ['web/styles/*.scss'],
-	scripts: ['web/scripts/**/*.js'],
+	scripts: ['web/scripts/**.js'],
 	html: ['web/**/*.html']
 };
 
 var build = {
-	styles: 'build/styles'
+	styles: 'web/build/styles'
 };
 
 gulp.task('sass', function () {
 	gulp.src(paths.styles)
 		.pipe(sass())
 		.pipe(prefix())
-		.pipe(gulp.dest('web/build/styles'));
+		.pipe(gulp.dest(build.styles));
 });
 
 gulp.task('serve', ['sass'], function () {
@@ -36,10 +36,7 @@ gulp.task('serve', ['sass'], function () {
 	app.use(connectLivereload({
 		port: livereloadPort
 	}));
-	var config = require('./config/config');
-	app.use(express.static('web'));
-	require('./config/express')(app, config);
-	require('./config/routes')(app);
+	app.use(require('./src/app')());
 	app.listen(serverPort);
 });
 
