@@ -9,6 +9,8 @@ var gulp = require('gulp'),
 	prefix = require('gulp-autoprefixer'),
 	livereload = require('gulp-livereload'),
 	connectLivereload = require('connect-livereload'),
+	jshint = require('gulp-jshint'),
+	stylish = require('jshint-stylish'),
 	express = require('express');
 
 var serverPort = process.env.GDG_DEVSERVER_PORT || 7100;
@@ -38,6 +40,13 @@ gulp.task('serve', ['sass'], function () {
 	}));
 	app.use(require('./src/app')());
 	app.listen(serverPort);
+});
+
+gulp.task('lint', function () {
+	return gulp.src(paths.scripts)
+		.pipe(jshint())
+		.pipe(jshint.reporter(stylish))
+		.pipe(jshint.reporter('fail'));
 });
 
 gulp.task('watch', function () {
