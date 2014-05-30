@@ -30,9 +30,6 @@ var User = new Schema({
 			}
 
 			return email.toLowerCase();
-		},
-		index: {
-			unique: true
 		}
 	},
 
