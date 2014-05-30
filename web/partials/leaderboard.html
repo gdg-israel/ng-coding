@@ -9,7 +9,7 @@
 		<td>
 			<a href="https://github.com/{{entry.username}}">
 				<div id="avatar">
-					<img src="{{entry.gravatarUrl}}" alt="" />
+					<img src="{{gravatarUrl(entry.gravatarId)}}" alt="" />
 				</div>
 				{{entry.username}}
 			</a>
@@ -17,9 +17,9 @@
 		<td>{{entry.score}}</td>
 		<td>
 		<span>
-		{{entry.lastActivity.content}}
+		{{activities[entry._id].content}}
 		</span>
-		<span>{{entry.lastActivity.time}}</span>
+		<span>{{activities[entry._id].time}}</span>
 		</td>
 	</tr>
 </table>

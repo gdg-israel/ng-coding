@@ -1,20 +1,23 @@
 'use strict';
 var passport = require('passport'),
-	userController = require('../src/api/controllers/user-controller');
+    userController = require('../src/api/controllers/user-controller');
 
-module.exports = function (app) {
+module.exports = function(app){
 
 //    app.get('/user/:username', userController.user);
 
-	app.get('/user/current', userController.currentUser);
-
-	app.get('/leaderboard', userController.leaderboard);
+    app.get('/user/current', userController.currentUser);
+    app.get('/leaderboard', userController.leaderboard);
+//
+//    app.post('/user', userController.registerUser);
+//
+//    app.get('/leaderboard');
 //
 //    app.get('/contributions')
 //
 //    app.put('/contributions/:contibId')
 
-	app.get('/auth/github', passport.authenticate('github'));
+    app.get('/auth/github', passport.authenticate('github'));
 
 	app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
 		function (req, res) {

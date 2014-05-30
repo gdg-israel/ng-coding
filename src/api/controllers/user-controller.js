@@ -11,8 +11,8 @@ module.exports = {
 			return;
 		}
 
-		res.ok(user);
-	},
+        res.ok(req.user);
+    },
 	leaderboard: function (req, res) {
 		User.getAll()
 			.then(function (allUsers) {
