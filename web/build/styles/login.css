@@ -7,6 +7,9 @@ body {
 h1 {
   font-size: 72px; }
 
+.thank-you h1 {
+  margin-bottom: 80px; }
+
 .mini-terminal {
   max-width: 600px;
   margin: 32px auto;
@@ -14,6 +17,10 @@ h1 {
   min-height: 270px; }
   .mini-terminal.invisible {
     visibility: hidden; }
+
+p.big {
+  font-size: 30px;
+  margin: 40px; }
 
 .footer {
   margin-top: 120px; }
