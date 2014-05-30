@@ -1,9 +1,10 @@
 'use strict';
 angular.module('ngCoding.services', [])
-  .factory('User', function ($http, $timeout) {
+  .factory('User', function ($http, $timeout, $q) {
         var usersBuffer = 0;
         var usersCollection = [];
         var activities = {};
+        var pollingInitialized = false;
         var pollActivities = function () {
             angular.forEach(usersCollection, function (user) {
                 $http.get('https://api.github.com/users/' + user.username + '/events').success(function (res) {
@@ -12,9 +13,8 @@ angular.module('ngCoding.services', [])
                     activities[user._id] = {content: lastActivity.type +  ' @ Repo ' + lastActivity.repo.name, time: moment(lastActivity.created_at).format('MMMM Do YYYY, h:mm:ss a')};
                 });
             });
-            $timeout(pollActivities, 10000);
+            $timeout(pollActivities, 2000);
         };
-        pollActivities();
         return {
             isLoggedIn: function () {
                 return angular.isDefined(localStorage.getItem('userId'));
@@ -23,12 +23,11 @@ angular.module('ngCoding.services', [])
                 return $http.get('/user/current');
             },
             all: function () {
-                var promise = $http.get('user/all?next='+usersBuffer);
-                promise.then(function (res) {
-                    usersBuffer+=10;
-                    usersCollection = res.data.payload;
+              var deferred = $q.defer();
+                $http.get('/leaderboard').then(function (res) {
+                    deferred.resolve(usersCollection = res.data.payload)
                 });
-                return promise;
+                return deferred.promise;
             },
             getGravatarUrl: function (uId, size) {
                 var suffix = (angular.isDefined(size))? 's=' + size: '';
@@ -38,7 +37,11 @@ angular.module('ngCoding.services', [])
                 return 'https://github.com/' + username;
             },
             pollActivities: function() {
+                if(!pollingInitialized){
+                    pollingInitialized = true;
+                    pollActivities();
+                }
                 return activities;
-            }
+            },
         };
     });

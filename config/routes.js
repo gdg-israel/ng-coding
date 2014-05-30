@@ -7,7 +7,7 @@ module.exports = function(app){
 //    app.get('/user/:username', userController.user);
 
     app.get('/user/current', userController.currentUser);
-    app.get('/user/all', userController.all);
+    app.get('/leaderboard', userController.leaderboard);
 //
 //    app.post('/user', userController.registerUser);
 //
@@ -19,13 +19,12 @@ module.exports = function(app){
 
     app.get('/auth/github', passport.authenticate('github'));
 
-    app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
-        function(req, res) {
-            // Successful authentication, redirect to the thank you page.
-            res.redirect('/hack');
-        });
-    app.get('/hack', function (req, res) {
-      // console.log(express.static(__dirname))
-        res.sendfile('./web/hack.html');
-    });
+	app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
+		function (req, res) {
+			// Successful authentication, redirect to the thank you page.
+			res.redirect('/thanks.html');
+		});
+	app.get('/hack', function (req, res) {
+		res.sendfile('./web/hack.html');
+	});
 };

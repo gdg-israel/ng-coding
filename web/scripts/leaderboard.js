@@ -2,16 +2,19 @@
 
 angular.module('ngCoding.leaderboard', [])
 		.controller('LeaderboardCtrl', function ($scope, User, $interval) {
-				User.all()
-					.success(function (data, status) {
-
-						var rawData = data.payload;
-						$scope.usersScore = rawData;
+        function update() {
+            User.all()
+					.then(function (users) {
+						$scope.usersScore = users;
 						$scope.activities = User.pollActivities();
 						$scope.gravatarUrl = function (hash) {
 								return User.getGravatarUrl(hash, 40);
 						}
-					})
-					.error(function (data, status) {
-						});
-			});
+					});
+				}
+				update();
+				var autoUpdateInterval = $interval(update, 30000);
+				$scope.$on('$destory', function () {
+					$interval.cancel(autoUpdateInterval);
+				});
+	});

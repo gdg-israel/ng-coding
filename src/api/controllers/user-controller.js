@@ -1,20 +1,22 @@
 'use strict';
-var User = require('../../user/models/user-model');
+var mongoose = require('mongoose'),
+	User = mongoose.model('User');
 
 module.exports = {
-    currentUser: function(req, res) {
-        var user = req.user;
+	currentUser: function (req, res) {
+		var user = req.user;
 
-        if (!req.user) {
-            res.unauthorized('user is not logged-in');
-            return;
-        }
+		if (!user) {
+			res.unauthorized('user is not logged-in');
+			return;
+		}
 
         res.ok(req.user);
     },
-    all: function (req, res) {
-        User.find().exec().then(function (users) {
-            res.ok(users);
-        });
-    }
+	leaderboard: function (req, res) {
+		User.getAll()
+			.then(function (allUsers) {
+				res.ok(allUsers);
+			});
+	}
 };
