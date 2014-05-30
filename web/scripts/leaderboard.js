@@ -8,6 +8,8 @@ angular.module('ngCoding.leaderboard', [])
 			User.all().assignTo($scope, 'usersScore');
 		}
 
+		update();
+
 		var autoUpdateInterval = $interval(update, 30000);
 		$scope.$on('$destory', function () {
 			$interval.cancel(autoUpdateInterval);
