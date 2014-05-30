@@ -7,6 +7,7 @@ module.exports = function(app){
 //    app.get('/user/:username', userController.user);
 
     app.get('/user/current', userController.currentUser);
+    app.get('/user/all', userController.all);
 //
 //    app.post('/user', userController.registerUser);
 //
@@ -26,5 +27,5 @@ module.exports = function(app){
     app.get('/hack', function (req, res) {
       // console.log(express.static(__dirname))
         res.sendfile('./web/hack.html');
-    })
+    });
 };

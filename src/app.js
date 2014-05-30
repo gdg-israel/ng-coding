@@ -28,6 +28,10 @@ module.exports = function () {
 	});
 
 	app.use(express.static('web'));
+	app.use(function(req,res,next){
+		req.db = db;
+		next();
+	});
 	require('../config/express')(app, config);
 	require('../config/routes')(app);
 

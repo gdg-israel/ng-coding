@@ -1,15 +1,17 @@
 'use strict';
 
 angular.module('ngCoding.leaderboard', [])
-	.controller('LeaderboardCtrl', function ($scope, User) {
-			User.all().success(function (data, status) {
-				$scope.usersScore = users;
-			}).error(function (data, status) {
-				console.log(data)
-				$scope.usersScore = [
-				{userId:551, username:"liorr", score:551, gravatarUrl:User.getGravatarUrl("92ccd542327064bf08d3797c3f291329", 40), lastActivity:{content:"Commited to angular-fire", time:"14:10"}}
-				]
+		.controller('LeaderboardCtrl', function ($scope, User, $interval) {
+				User.all()
+					.success(function (data, status) {
 
-
+						var rawData = data.payload;
+						$scope.usersScore = rawData;
+						$scope.activities = User.pollActivities();
+						$scope.gravatarUrl = function (hash) {
+								return User.getGravatarUrl(hash, 40);
+						}
+					})
+					.error(function (data, status) {
+						});
 			});
-	})

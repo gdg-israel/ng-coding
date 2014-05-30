@@ -1,4 +1,5 @@
 'use strict';
+var User = require('../../user/models/user-model');
 
 module.exports = {
     currentUser: function(req, res) {
@@ -10,5 +11,10 @@ module.exports = {
         }
 
         res.ok(req.user);
+    },
+    all: function (req, res) {
+        User.find().exec().then(function (users) {
+            res.ok(users);
+        });
     }
 };

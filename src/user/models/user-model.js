@@ -125,4 +125,4 @@ User.options.toObject.transform = function(doc, ret, options) {
     delete ret.password;
 };
 
-mongoose.model('User', User);
+module.exports = mongoose.model('User', User);
