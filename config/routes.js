@@ -7,10 +7,8 @@ module.exports = function(app){
 //    app.get('/user/:username', userController.user);
 
     app.get('/user/current', userController.currentUser);
-//
-//    app.post('/user', userController.registerUser);
-//
-//    app.get('/leaderboard');
+
+    app.get('/leaderboard', userController.leaderboard);
 //
 //    app.get('/contributions')
 //

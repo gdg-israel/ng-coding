@@ -3,9 +3,10 @@
 angular.module('ngCoding.leaderboard', [])
 	.controller('LeaderboardCtrl', function ($scope, User) {
 		User.all()
-			.success(function (data) {
-				$scope.usersScore = data.users;
-			}).error(function () {
+			.then(function (users) {
+				$scope.usersScore = users;
+			})
+			.catch(function () {
 				$scope.usersScore = [
 					{
 						userId: 551,

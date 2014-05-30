@@ -1,7 +1,6 @@
 'use strict';
 angular.module('ngCoding.services', [])
 	.factory('User', function ($http) {
-		var usersBuffer = 0;
 		return {
 			isLoggedIn: function () {
 				return angular.isDefined(localStorage.getItem('userId'));
@@ -10,11 +9,9 @@ angular.module('ngCoding.services', [])
 				return $http.get('/user/current');
 			},
 			all: function () {
-				var promise = $http.get('user/all?next=' + usersBuffer);
-				promise.finally(function () {
-					usersBuffer += 10;
+				return $http.get('/leaderboard').then(function(response) {
+					return response.data.payload;
 				});
-				return promise;
 			},
 			getGravatarUrl: function (hash, size) {
 				var suffix = (angular.isDefined(size)) ? ('s=' + size) : '';
