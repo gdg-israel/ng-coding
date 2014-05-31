@@ -9,10 +9,9 @@ Live scoring system for the ng-coding session in ng-conf Israel. Author: Uri Sha
 
 1. Install node.js (version 0.10.0 or newer), npm, git command-line client (version 1.8.4 or newer)
 2. Run the following command (as super-user):
-   * `npm install -g gulp bower`
+   * `npm install -g gulp`
 3. Clone the project and run the following commands in the project directory:
    * `npm install`
-   * `bower install`
 
 ## Development instructions
 

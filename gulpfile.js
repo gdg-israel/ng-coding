@@ -65,7 +65,10 @@ gulp.task('lint', function () {
 	return gulp.src([].concat(paths.scripts, paths.serverScripts, paths.buildScripts))
 		.pipe(jshint())
 		.pipe(jshint.reporter(stylish))
-		.pipe(jshint.reporter('fail'));
+		.pipe(jshint.reporter('fail'))
+		.on('error', function() {
+			process.exit(1);
+		});
 });
 
 gulp.task('watch', ['serve'], function () {
