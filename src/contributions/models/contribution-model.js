@@ -18,7 +18,7 @@ var mongoose = require('mongoose'),
 
 var Contribution = new Schema({
 
-    title: {
+	    title: {
         type: String,
         required: true
     },
