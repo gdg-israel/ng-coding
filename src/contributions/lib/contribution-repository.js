@@ -5,14 +5,13 @@ var mongoose = require('mongoose'),
     Contribution = mongoose.model('Contribution');
 
 function handlePromisedResponse(response) {
-    var err = response[0],
-        docs = response[1];
-
-    if (err) {
-        throw new Error(err);
+    if (!Array.isArray(response)) {
+        throw new Error(response);
     }
 
-    if (Array.isArray(docs)) {
+    var docs = response[1];
+
+   if (Array.isArray(docs)) {
         return makeDocsPlainObjects(docs);
     }
 
