@@ -1,3 +1,5 @@
+'use strict';
+
 var moduleName = 'ngCoding.header';
 
 angular.module(moduleName, [
