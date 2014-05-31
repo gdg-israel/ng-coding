@@ -5,16 +5,16 @@ angular.module('ngCoding.services', [])
         var usersCollection = [];
         var activities = {};
         var pollingInitialized = false;
-        var pollActivities = function () {
-            angular.forEach(usersCollection, function (user) {
-                $http.get('https://api.github.com/users/' + user.username + '/events').success(function (res) {
-                    var userActivities = res;
-                    var lastActivity = userActivities[0];
-                    activities[user._id] = {content: lastActivity.type +  ' @ Repo ' + lastActivity.repo.name, time: moment(lastActivity.created_at).format('MMMM Do YYYY, h:mm:ss a')};
-                });
-            });
-            $timeout(pollActivities, 2000);
-        };
+        // var pollActivities = function () {
+        //     angular.forEach(usersCollection, function (user) {
+        //         $http.get('https://api.github.com/users/' + user.username + '/events').success(function (res) {
+        //             var userActivities = res;
+        //             var lastActivity = userActivities[0];
+        //             activities[user._id] = {content: lastActivity.type +  ' @ Repo ' + lastActivity.repo.name, time: moment(lastActivity.created_at).fromNow()};//format('MMMM Do YYYY, h:mm:ss a')};
+        //         });
+        //     });
+        //     $timeout(pollActivities, 2000);
+        // };
         return {
             isLoggedIn: function () {
                 return angular.isDefined(localStorage.getItem('userId'));
@@ -36,12 +36,12 @@ angular.module('ngCoding.services', [])
             getProfileUrl: function (username) {
                 return 'https://github.com/' + username;
             },
-            pollActivities: function() {
-                if(!pollingInitialized){
-                    pollingInitialized = true;
-                    pollActivities();
-                }
-                return activities;
-            },
+            // pollActivities: function() {
+            //     if(!pollingInitialized){
+            //         pollingInitialized = true;
+            //         pollActivities();
+            //     }
+            //     return activities;
+            // },
         };
     });

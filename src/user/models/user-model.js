@@ -1,8 +1,9 @@
 'use strict';
-
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
-	q = require('q');
+	q = require('q'), https = require('https');
+
+var config = require('../../../config/config');
 
 /**
  * User model
@@ -54,6 +55,9 @@ var User = new Schema({
 	score: {
 		type: Number,
 		required: true
+	},
+	lastActivity: {
+		type: Object
 	}
 
 }, { versionKey: false, id: false });
@@ -128,5 +132,60 @@ User.options.toObject.transform = function (doc, ret) {
 	delete ret._id;
 	delete ret.password;
 };
+
+function sendRequest(options, callback){
+		var req = https.request(options, function (resp) {
+				var raw = '';
+				resp.on('data', function (chunk) {
+					raw += chunk;
+				});
+				resp.on('end', function () {
+					var data = JSON.parse(raw);
+					callback(data);
+				});
+			});
+		req.on('error',function (error) {
+			console.log(error);
+		});
+		req.end();
+	}
+
+User.methods.fetchGithubEvents = function () {
+		var self = this;
+		var deferred = q.defer();
+		var options = {
+				host: 'api.github.com',
+				port: 443,
+				path: '/users/' + self.username + '/events?client_id=' + config.github.clientId + '&client_secret=' + config.github.clientSecret,
+				method: 'GET',
+				headers: {
+						'User-Agent': config.app.name,
+						'Content-Type': 'application/json'
+					}
+				};
+		sendRequest(options, function (events){
+				deferred.resolve(events);
+			});
+		return deferred.promise;
+	};
+
+User.methods.updateScore = function (score) {
+		var deferred = q.defer();
+		this.model('User').update({_id:this.userId}, {$set:{score: score}}, function (err, res) {
+			if(err)
+				console.log('error '+ err);
+			deferred.resolve(res);
+		});
+		return deferred.promise;
+	};
+
+User.methods.setLastActivity = function (activity) {
+	this.model('User').update({_id:this.userId}, {$set:{lastActivity: activity}}, function (err, res) {
+		if(err)
+			console.log(err);
+	})
+}
+
+
 
 module.exports = mongoose.model('User', User);

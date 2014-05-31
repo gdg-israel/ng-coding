@@ -64,4 +64,4 @@ gulp.task('watch', function () {
 		.pipe(lrserver);
 });
 
-gulp.task('default', ['serve', 'watch']);
+gulp.task('default', ['serve', 'watch', 'lint']);
