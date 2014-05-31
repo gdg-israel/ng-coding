@@ -20,7 +20,7 @@ function handlePromisedResponse(response) {
 
 function handlePromisedDocs(response) {
     if (!Array.isArray(response)) {
-        throw new Error(response);
+        return response;
     }
 
     return response[1];
