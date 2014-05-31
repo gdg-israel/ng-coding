@@ -10,7 +10,7 @@ module.exports = {
             })
 
             .fail(function(err) {
-                res.error(err);
+                res.error(err.toString());
             });
     },
 
