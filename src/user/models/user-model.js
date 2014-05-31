@@ -182,7 +182,7 @@ User.methods.updateScore = function (score) {
 	};
 
 User.methods.setLastActivity = function (activity) {
-	this.model('User').update({_id:this.userId}, {$set:{lastActivity: activity}}, function (err, res) {
+	this.model('User').update({_id:this.userId}, {$set:{lastActivity: activity}}, function (err) {
 		if(err){
 			console.log(err);
 		}
