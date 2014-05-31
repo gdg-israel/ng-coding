@@ -27,6 +27,10 @@ angular
 			.state('prizes', {
 				url: '/prizes',
 				template: require('./prizes.html')
+			})
+			.state('rules', {
+				url: '/rules',
+				template: require('./rules.html')
 			});
 
 		$urlRouterProvider.otherwise('/leaderboard');
