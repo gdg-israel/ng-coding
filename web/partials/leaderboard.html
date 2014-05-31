@@ -1,5 +1,5 @@
 <h3>Top Participants</h3>
-<span style="position:absolute;top:10px;right:10px;"> update in {{lastUpdate}}</span>
+
 <table class="table leader-board">
 	<thead>
 		<tr>
@@ -9,19 +9,22 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="entry in usersScore | orderBy:score:reverse" ng-init="activity = showActivity(entry.lastActivity)">
+		<tr ng-repeat="entry in usersScore | orderBy:score:reverse">
 			<td>
-				<a href="https://github.com/{{entry.username}}">
+				<a href="https://github.com/{{entry.username}}?tab=activity">
 					<div id="avatar">
-						<img ng-src="{{gravatarUrl(entry.gravatarId)}}" alt="" />
+						<img ng-src="{{gravatarUrl(entry.gravatarId)}}" alt="{{entry.username}}"/>
 					</div>
 					{{entry.username}}
 				</a>
 			</td>
 			<td>{{entry.score}}</td>
 			<td>
-				<span>{{activity.content}}</span>
-				<span am-time-ago="activity.time"></span>
+				<span>{{entry.lastActivity|githubActivity}} @
+					<a ng-href="http://github.com/{{entry.lastActivity.repo.name}}" target="_blank">
+						{{entry.lastActivity.repo.name}}</a>
+				</span>,
+				<span class="timestamp" am-time-ago="entry.lastActivity.created_at"></span>
 			</td>
 		</tr>
 	</tbody>
