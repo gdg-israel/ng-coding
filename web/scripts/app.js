@@ -1,7 +1,7 @@
 'use strict';
 
 /* globals ngCoding: true */
-var ngCoding = angular.module('gdg-israel.ng-coding', ['ui.router', 'ngCoding.leaderboard', 'ngCoding.services', 'urish.promisesToolkit', 'angularMoment']);
+var ngCoding = angular.module('gdg-israel.ng-coding', ['ui.router', 'ngCoding.leaderboard', 'ngCoding.contributions', 'ngCoding.services', 'urish.promisesToolkit', 'angularMoment']);
 
 ngCoding
 	.config(function ($stateProvider, $urlRouterProvider) {
@@ -13,7 +13,8 @@ ngCoding
 			})
 			.state('contributions', {
 				url: '/contributions',
-				templateUrl: 'partials/contributions.html'
+				templateUrl: 'partials/contributions.html',
+				controller: 'ContributionsCtrl'
 			})
 			.state('prizes', {
 				url: '/prizes',

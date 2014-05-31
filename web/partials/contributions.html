@@ -1,15 +1,20 @@
 <h3>Open Contributions</h3>
+
 <table class="table">
-	<tr>
-		<th>Type</th>
-		<th>Link</th>
-		<th>Score</th>
-		<th>Title / Description</th>
-	</tr>
-	<tr>
-		<td>issue</td>
-		<td><a href="#">angular/angular#14</a></td>
-		<td>2</td>
-		<td>Add some magic :P</td>
-	</tr>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Score</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="contribution in contributions">
+			<td>
+				<a href="{{contribution.link}}" target="_blank">{{contribution.title}}</a>
+			</td>
+			<td>{{contribution.complexityLevel}}</td>
+			<td>-</td>
+		</tr>
+	</tbody>
 </table>
