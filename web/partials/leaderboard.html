@@ -1,5 +1,6 @@
 <h3>Top Participants</h3><span style="position:absolute;top:10px;right:10px;"> update in {{lastUpdate}}</span>
 <table class="table leader-board">
+<table class="table leader-board">
 	<thead>
 		<tr>
 			<th>Github User</th>
@@ -20,7 +21,11 @@
 			<td>{{entry.score}}</td>
 			<td >
 			<span>{{activity.content}}</span>
-			<span>{{activity.time}}</span>
+			<td>
+				<span>
+					{{activities[entry._id].content}}
+				</span>
+				<span am-time-ago="activity.time"></span>
 			</td>
 		</tr>
 	</tbody>

@@ -9,5 +9,5 @@ var contest = {
     repos: {
       'gdg-israel/ng-coding': 1
     }
-}
+};
 module.exports = contest;

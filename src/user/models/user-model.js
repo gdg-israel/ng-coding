@@ -183,8 +183,8 @@ User.methods.setLastActivity = function (activity) {
 	this.model('User').update({_id:this.userId}, {$set:{lastActivity: activity}}, function (err, res) {
 		if(err)
 			console.log(err);
-	})
-}
+	});
+};
 
 
 

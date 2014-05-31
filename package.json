@@ -4,7 +4,7 @@
   "description": "Live scoring system for the ng-coding session in ng-conf Israel",
   "main": "openshift.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node_modules/.bin/gulp lint",
     "postinstall": "node_modules/.bin/bower install"
   },
   "repository": {

@@ -10,8 +10,10 @@ angular.module('ngCoding.services', [])
         //         $http.get('https://api.github.com/users/' + user.username + '/events').success(function (res) {
         //             var userActivities = res;
         //             var lastActivity = userActivities[0];
+            /* jshint camelcase:false */
         //             activities[user._id] = {content: lastActivity.type +  ' @ Repo ' + lastActivity.repo.name, time: moment(lastActivity.created_at).fromNow()};//format('MMMM Do YYYY, h:mm:ss a')};
         //         });
+        /* jshint camelcase:true */
         //     });
         //     $timeout(pollActivities, 2000);
         // };
@@ -25,7 +27,7 @@ angular.module('ngCoding.services', [])
             all: function () {
               var deferred = $q.defer();
                 $http.get('/leaderboard').then(function (res) {
-                    deferred.resolve(usersCollection = res.data.payload)
+                    deferred.resolve(usersCollection = res.data.payload);
                 });
                 return deferred.promise;
             },
@@ -35,13 +37,6 @@ angular.module('ngCoding.services', [])
             },
             getProfileUrl: function (username) {
                 return 'https://github.com/' + username;
-            },
-            // pollActivities: function() {
-            //     if(!pollingInitialized){
-            //         pollingInitialized = true;
-            //         pollActivities();
-            //     }
-            //     return activities;
-            // },
+            }
         };
     });

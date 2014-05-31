@@ -68,11 +68,11 @@ function filterRelevantEvent(events) {
 }
 function calcScore(event) {
 		return contestTerms.score[event.type];
-}
-var updateUserEvents= function (user, events) {
-		Events.update({userId: user._id},{$addToSet:{scoredEvents: {$each: events}}}, function (res, error) {
-			//TODO: Write error to log ...
-			if(error)
-				console.log(error);
-	});
-}
+	}
+// var updateUserEvents= function (user, events) {
+// 		Events.update({userId: user._id},{$addToSet:{scoredEvents: {$each: events}}}, function (res, error) {
+// 			//TODO: Write error to log ...
+// 			if(error)
+// 				console.log(error);
+// 		});
+// 	};
