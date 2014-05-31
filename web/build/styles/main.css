@@ -8,8 +8,5 @@ body {
   padding-top: 15px;
   padding-bottom: 15px; }
 
-.leader-board, th, td {
-  text-align: center;
+table.leader-board tbody > tr > th, table.leader-board tbody > tr > td {
   line-height: 40px; }
-  .leader-board .avatar, th .avatar, td .avatar {
-    display: inline-block; }

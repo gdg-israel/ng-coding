@@ -28,7 +28,8 @@ var paths = {
 	html: ['web/**/*.html'],
 	targets: {
 		styles: 'web/build/styles',
-		js: 'web/build/ngCoding.js'
+		js: 'web/build/ngCoding.js',
+		mainCss: 'web/build/styles/main.css'
 	}
 };
 
@@ -77,11 +78,12 @@ gulp.task('watch', function () {
 		.pipe(gulp.dest(paths.targets.styles))
 		.pipe(lrserver);
 
-	gulp.src(paths.targets.js)
+	gulp.src([].concat(paths.targets.js, paths.targets.mainCss))
 		.pipe(watch())
 		.pipe(lrserver);
 
 	gulp.watch([].concat(paths.scripts, paths.html), ['browserify']);
+	gulp.watch('web/modules/**/*.scss', ['sass']);
 });
 
 gulp.task('default', ['serve', 'watch', 'lint']);

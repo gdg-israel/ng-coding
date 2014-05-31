@@ -12,9 +12,7 @@
 		<tr ng-repeat="entry in usersScore | orderBy:score:reverse">
 			<td>
 				<a href="https://github.com/{{entry.username}}?tab=activity">
-					<div id="avatar">
-						<img ng-src="{{gravatarUrl(entry.gravatarId)}}" alt="{{entry.username}}"/>
-					</div>
+					<img ng-src="{{gravatarUrl(entry.gravatarId)}}" alt="{{entry.username}}" class="avatar"/>
 					{{entry.username}}
 				</a>
 			</td>
