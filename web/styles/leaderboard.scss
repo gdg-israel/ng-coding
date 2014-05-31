@@ -1,7 +1,8 @@
-#avatar{
-  display:inline-block
-}
-.leader-board, td, th{
-  text-align:center;
-  line-height:40px !important;
+.leader-board {
+	text-align: center;
+	line-height: 40px;
+
+	.avatar {
+		display: inline-block;
+	}
 }
