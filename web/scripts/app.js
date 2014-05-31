@@ -14,6 +14,10 @@ ngCoding
 			.state('contributions', {
 				url: '/contributions',
 				templateUrl: 'partials/contributions.html'
+			})
+			.state('prizes', {
+				url: '/prizes',
+				templateUrl: 'partials/prizes.html'
 			});
 
 		$urlRouterProvider.otherwise('/leaderboard');
