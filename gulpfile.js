@@ -68,7 +68,7 @@ gulp.task('lint', function () {
 		.pipe(jshint.reporter('fail'));
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', ['serve'], function () {
 	var lrserver = livereload(livereloadPort);
 
 	gulp.src(paths.styles)
@@ -86,4 +86,4 @@ gulp.task('watch', function () {
 	gulp.watch('web/modules/**/*.scss', ['sass']);
 });
 
-gulp.task('default', ['serve', 'watch', 'lint']);
+gulp.task('default', ['watch', 'lint']);
