@@ -7,3 +7,9 @@ body {
 .header-user-score > li {
   padding-top: 15px;
   padding-bottom: 15px; }
+
+.leader-board, th, td {
+  text-align: center;
+  line-height: 40px; }
+  .leader-board .avatar, th .avatar, td .avatar {
+    display: inline-block; }

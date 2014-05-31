@@ -10,6 +10,9 @@ var gulp = require('gulp'),
 	livereload = require('gulp-livereload'),
 	connectLivereload = require('connect-livereload'),
 	jshint = require('gulp-jshint'),
+	browserify = require('gulp-browserify'),
+	html = require('html-browserify'),
+	rename = require('gulp-rename'),
 	stylish = require('jshint-stylish'),
 	express = require('express');
 
@@ -19,6 +22,7 @@ var livereloadPort = process.env.GDG_LIVERELOAD_PORT || 35732;
 var paths = {
 	styles: ['web/styles/*.scss'],
 	scripts: ['web/scripts/{**/,}*.js'],
+	entryPoint: ['web/modules/main/main.js'],
 	serverScripts: ['src/**/*.js', 'config/**/*.js', 'app.js'],
 	buildScripts: ['gulpfile.js'],
 	html: ['web/**/*.html']
@@ -35,7 +39,18 @@ gulp.task('sass', function () {
 		.pipe(gulp.dest(build.styles));
 });
 
-gulp.task('serve', ['sass'], function () {
+gulp.task('browserify', function() {
+	gulp.src(paths.entryPoint, { read: false })
+		.pipe(browserify({
+			insertGlobals: true,
+			debug: true,
+			transform: html
+		}))
+		.pipe(rename('ngCoding.js'))
+		.pipe(gulp.dest('web/build'));
+});
+
+gulp.task('serve', ['sass', 'browserify'], function () {
 	var app = express();
 	app.use(connectLivereload({
 		port: livereloadPort

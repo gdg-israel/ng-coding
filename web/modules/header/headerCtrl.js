@@ -1,6 +1,6 @@
 'use strict';
 
-ngCoding.controller('HeaderCtrl', function ($scope, $window, User) {
+module.exports = function ($scope, $window, User) {
 	User.current()
 		.success(function (data) {
 			var user = data.payload;
@@ -13,4 +13,4 @@ ngCoding.controller('HeaderCtrl', function ($scope, $window, User) {
 			delete localStorage.username;
 			$window.location.href = '/';
 		});
-});
+};
