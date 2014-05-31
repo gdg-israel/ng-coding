@@ -43,17 +43,18 @@ module.exports = function () {
 				User.getAll().then(function(users){
 					_.each(users, function(user){
 								user.fetchGithubEvents().then(function (events) {
-									console.log(events);
 									var accumScore = 0, filteredEvents = filterRelevantEvent(events);
-									console.log(events[0]);
+									user.setLastActivity(events[0]);
 									_.each(filteredEvents, function (event) {
 												accumScore+= calcScore(event);
 											});
-									user.updateScore(accumScore).then(function (res, error) {
-										if(res){
-											console.log('updateScore result: ' + res);
-										}
-									});
+									if(accumScore >= 10){
+										user.updateScore(accumScore).then(function (res, error) {
+														if(res){
+															console.log('updateScore result: ' + res);
+														}
+													});
+									}
 								});
 							});
 				});

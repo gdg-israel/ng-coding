@@ -15,9 +15,9 @@ angular.module('ngCoding.leaderboard', [])
 						$scope.showActivity = function (activity) {
 							if(angular.isDefined(activity)){
 								return {
-									content: activity.type +  ' @ Repo ' + activity.repo.name,
+									content: activity.type +  ' @ ' + activity.repo.name,
 									/* jshint camelcase:false */
-									time: moment(activity.created_at).fromNow()
+									time: activity.created_at
 									/* jshint camelcase:true */
 
 								};
