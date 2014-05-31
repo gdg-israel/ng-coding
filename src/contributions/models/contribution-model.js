@@ -65,6 +65,11 @@ var Contribution = new Schema({
     assignees: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
+    }],
+
+    winners: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }]
 
 }, { versionKey: false, id: false });
