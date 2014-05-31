@@ -21,25 +21,27 @@ var livereloadPort = process.env.GDG_LIVERELOAD_PORT || 35732;
 
 var paths = {
 	styles: ['web/styles/*.scss'],
-	scripts: ['web/scripts/{**/,}*.js'],
+	scripts: ['web/scripts/{**/,}*.js', 'web/modules/**/*.js'],
 	entryPoint: ['web/modules/main/main.js'],
 	serverScripts: ['src/**/*.js', 'config/**/*.js', 'app.js'],
 	buildScripts: ['gulpfile.js'],
-	html: ['web/**/*.html']
+	html: ['web/**/*.html'],
+	targets: {
+		styles: 'web/build/styles',
+		js: 'web/build/ngCoding.js',
+		mainCss: 'web/build/styles/main.css'
+	}
 };
 
-var build = {
-	styles: 'web/build/styles'
-};
 
 gulp.task('sass', function () {
 	gulp.src(paths.styles)
 		.pipe(sass())
 		.pipe(prefix())
-		.pipe(gulp.dest(build.styles));
+		.pipe(gulp.dest(paths.targets.styles));
 });
 
-gulp.task('browserify', function() {
+gulp.task('browserify', function () {
 	gulp.src(paths.entryPoint, { read: false })
 		.pipe(browserify({
 			insertGlobals: true,
@@ -73,12 +75,15 @@ gulp.task('watch', function () {
 		.pipe(watch())
 		.pipe(sass())
 		.pipe(prefix())
-		.pipe(gulp.dest(build.styles))
+		.pipe(gulp.dest(paths.targets.styles))
 		.pipe(lrserver);
 
-	gulp.src([].concat(paths.html, paths.scripts))
+	gulp.src([paths.targets.js, paths.targets.mainCss])
 		.pipe(watch())
 		.pipe(lrserver);
+
+	gulp.watch([].concat(paths.scripts, paths.html), ['browserify']);
+	gulp.watch('web/modules/**/*.scss', ['sass']);
 });
 
 gulp.task('default', ['serve', 'watch', 'lint']);

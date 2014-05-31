@@ -1,9 +1,7 @@
-.leader-board, th, td {
-
-	text-align: center;
-	line-height: 40px;
-
-	.avatar {
-		display: inline-block;
+table.leader-board {
+	tbody > tr {
+		> th, > td {
+			line-height: 40px;
+		}
 	}
 }

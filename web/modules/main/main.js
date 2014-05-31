@@ -21,7 +21,7 @@ angular
 			})
 			.state('prizes', {
 				url: '/prizes',
-				templateUrl: 'partials/prizes.html'
+				template: require('./prizes.html')
 			});
 
 		$urlRouterProvider.otherwise('/leaderboard');

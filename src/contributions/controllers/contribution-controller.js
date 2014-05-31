@@ -1,6 +1,5 @@
 'use strict';
-var mongoose = require('mongoose'),
-    contributionRepo = require('../lib/contribution-repository');
+var contributionRepo = require('../lib/contribution-repository');
 
 module.exports = {
     listContributions: function (req, res) {
