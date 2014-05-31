@@ -12,7 +12,7 @@ module.exports = function(app){
 
     app.get('/contributions', contributionsController.listContributions);
     app.post('/contributions', contributionsController.addContribution);
-    app.put('/contributions/:contibId', contributionsController.updateContribution);
+    app.put('/contributions/:contribId', contributionsController.updateContribution);
 
     app.get('/auth/github', passport.authenticate('github'));
 

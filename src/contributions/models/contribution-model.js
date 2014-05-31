@@ -85,7 +85,12 @@ Contribution.set('toObject', {
 });
 
 Contribution.statics.findAll = function() {
-    return promiseIt(this.find, {}, this);
+    var func = this.find().populate({
+        path: 'assignees',
+        select: 'username userId gravatarId'
+    });
+
+    return promiseIt(func.exec, {}, func);
 };
 
 Contribution.statics.findById = function(id) {

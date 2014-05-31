@@ -18,6 +18,14 @@ function handlePromisedResponse(response) {
     return docs.toObject();
 }
 
+function handlePromisedDocs(response) {
+    if (!Array.isArray(response)) {
+        throw new Error(response);
+    }
+
+    return response[1];
+}
+
 function makeDocsPlainObjects(docs) {
     return docs.map(function(doc) {
         return doc.toObject();
@@ -41,7 +49,7 @@ function updateDoc(doc, obj) {
 }
 
 function findAndUpdate(id, obj) {
-    return Contribution.findById(id).then(handlePromisedResponse)
+    return Contribution.findById(id).then(handlePromisedDocs)
         .then(function(doc) {
             if (!doc) {
                 throw new Error('contribution was not found');

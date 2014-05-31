@@ -26,7 +26,7 @@ module.exports = {
     },
 
     updateContribution: function(req, res) {
-        contributionRepo(req.params.contribId, req.body)
+        contributionRepo.updateContribution(req.params.contribId, req.body)
             .then(function(updatedContrib) {
                 res.ok(updatedContrib);
             })
