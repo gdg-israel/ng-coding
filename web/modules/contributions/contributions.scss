@@ -1,0 +1,15 @@
+.contributions {
+	.work-on-this {
+		display: none;
+	}
+
+	&.table > tbody > tr > td {
+		line-height: 24px;
+	}
+
+	tr:hover {
+		.work-on-this {
+			display: inline-block;;
+		}
+	}
+}

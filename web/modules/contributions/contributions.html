@@ -4,11 +4,11 @@
 
 <h3>Open Contributions</h3>
 
-<table class="table">
+<table class="table contributions">
 	<thead>
 		<tr>
-			<th>Title</th>
-			<th>Score</th>
+			<th width="20%">Title</th>
+			<th width="10%">Score</th>
 			<th>Status</th>
 		</tr>
 	</thead>
@@ -18,7 +18,9 @@
 				<a href="{{contribution.link}}" target="_blank">{{contribution.title}}</a>
 			</td>
 			<td>{{contribution.score}}</td>
-			<td>-</td>
+			<td>
+				<button class="btn btn-xs btn-primary work-on-this">Work on this</button>
+			</td>
 		</tr>
 	</tbody>
 </table>

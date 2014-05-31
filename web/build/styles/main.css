@@ -8,5 +8,12 @@ body {
   padding-top: 15px;
   padding-bottom: 15px; }
 
+.contributions .work-on-this {
+  display: none; }
+.contributions.table > tbody > tr > td {
+  line-height: 24px; }
+.contributions tr:hover .work-on-this {
+  display: inline-block; }
+
 table.leader-board tbody > tr > th, table.leader-board tbody > tr > td {
   line-height: 40px; }
