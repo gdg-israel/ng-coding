@@ -4,6 +4,12 @@ var mongoose = require('mongoose'),
     promiseIt = require('promise-it'),
     Contribution = mongoose.model('Contribution');
 
+function makeDocsPlainObjects(docs) {
+	return docs.map(function(doc) {
+		return doc.toObject();
+	});
+}
+
 function handlePromisedResponse(response) {
     if (!Array.isArray(response)) {
         throw new Error(response);
@@ -24,12 +30,6 @@ function handlePromisedDocs(response) {
     }
 
     return response[1];
-}
-
-function makeDocsPlainObjects(docs) {
-    return docs.map(function(doc) {
-        return doc.toObject();
-    });
 }
 
 function instantiateContribution(object) {
