@@ -78,7 +78,7 @@ gulp.task('watch', function () {
 		.pipe(gulp.dest(paths.targets.styles))
 		.pipe(lrserver);
 
-	gulp.src([].concat(paths.targets.js, paths.targets.mainCss))
+	gulp.src([paths.targets.js, paths.targets.mainCss])
 		.pipe(watch())
 		.pipe(lrserver);
 
