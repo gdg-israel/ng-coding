@@ -92,4 +92,13 @@ Contribution.statics.findById = function(id) {
     return promiseIt(this.findOne, { _id: id }, this);
 };
 
+/**
+ *
+ * @param doc
+ * @param ret
+ */
+Contribution.options.toObject.transform = function (doc, ret) {
+    delete ret._id;
+};
+
 mongoose.model('Contribution', Contribution);

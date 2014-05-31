@@ -26,6 +26,13 @@ module.exports = {
     },
 
     updateContribution: function(req, res) {
+        contributionRepo(req.params.contribId, req.body)
+            .then(function(updatedContrib) {
+                res.ok(updatedContrib);
+            })
 
+            .fail(function(err) {
+                res.error(err.toString());
+            });
     }
 };

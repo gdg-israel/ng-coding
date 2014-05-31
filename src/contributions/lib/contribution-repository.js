@@ -28,6 +28,28 @@ function instantiateContribution(object) {
     return new Contribution(object);
 }
 
+function updateDoc(doc, obj) {
+    var property;
+
+    for (property in obj) {
+        if (obj.hasOwnProperty(property)) {
+            doc[property] = obj[property];
+        }
+    }
+
+    return promiseIt(doc.save, undefined, doc);
+}
+
+function findAndUpdate(id, obj) {
+    return Contribution.findById(id).then(handlePromisedResponse)
+        .then(function(doc) {
+            if (!doc) {
+                throw new Error('contribution was not found');
+            }
+
+            return updateDoc(doc, obj);
+        });
+}
 
 module.exports = {
     listAll: function() {
@@ -40,7 +62,7 @@ module.exports = {
         return promiseIt(contrib.save, undefined, contrib).then(handlePromisedResponse);
     },
 
-    updateContribution: function() {
-
+    updateContribution: function(contribId, contribObj) {
+        return findAndUpdate(contribId, contribObj).then(handlePromisedResponse);
     }
 };
