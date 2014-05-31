@@ -172,8 +172,9 @@ User.methods.fetchGithubEvents = function () {
 User.methods.updateScore = function (score) {
 		var deferred = q.defer();
 		this.model('User').update({_id:this.userId}, {$set:{score: score}}, function (err, res) {
-			if(err)
+			if(err){
 				console.log('error '+ err);
+			}
 			deferred.resolve(res);
 		});
 		return deferred.promise;
@@ -181,8 +182,9 @@ User.methods.updateScore = function (score) {
 
 User.methods.setLastActivity = function (activity) {
 	this.model('User').update({_id:this.userId}, {$set:{lastActivity: activity}}, function (err, res) {
-		if(err)
+		if(err){
 			console.log(err);
+		}
 	});
 };
 

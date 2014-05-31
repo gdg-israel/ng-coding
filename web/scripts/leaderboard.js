@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ngCoding.leaderboard', [])
-		.controller('LeaderboardCtrl', function ($scope, User, $interval) {
+		.controller('LeaderboardCtrl', function ($scope, User, $interval, moment) {
 			var lastUpdatedOn = new Date();
         function update() {
             User.all()
@@ -13,13 +13,15 @@ angular.module('ngCoding.leaderboard', [])
 								return User.getGravatarUrl(hash, 40);
 							};
 						$scope.showActivity = function (activity) {
-							return {
-								content: activity.type +  ' @ Repo ' + activity.repo.name,
-								/* jshint camelcase:false */
-								time: moment(activity.created_at).fromNow()
-								/* jshint camelcase:true */
+							if(angular.isDefined(activity)){
+								return {
+									content: activity.type +  ' @ Repo ' + activity.repo.name,
+									/* jshint camelcase:false */
+									time: moment(activity.created_at).fromNow()
+									/* jshint camelcase:true */
 
-							};
+								};
+							}
 						};
 					});
 			}

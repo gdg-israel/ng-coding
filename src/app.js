@@ -38,20 +38,21 @@ module.exports = function () {
 	require('../config/express')(app, config);
 	require('../config/routes')(app);
 
-	var job = new CronJob('*/5 * * * * *', function () {
+	var job = new CronJob('*/2 * * * *', function () {
 				var User = mongoose.model('User');
 				User.getAll().then(function(users){
 					_.each(users, function(user){
 								user.fetchGithubEvents().then(function (events) {
+									console.log(events);
 									var accumScore = 0, filteredEvents = filterRelevantEvent(events);
-									user.setLastActivity(events[0]);
+									console.log(events[0]);
 									_.each(filteredEvents, function (event) {
 												accumScore+= calcScore(event);
 											});
-
 									user.updateScore(accumScore).then(function (res, error) {
-										if(res)
+										if(res){
 											console.log('updateScore result: ' + res);
+										}
 									});
 								});
 							});
