@@ -56,6 +56,7 @@ var User = new Schema({
 		type: Number,
 		required: true
 	},
+
 	lastActivity: {
 		type: Object
 	}

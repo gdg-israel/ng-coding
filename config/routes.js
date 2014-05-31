@@ -1,6 +1,7 @@
 'use strict';
 var passport = require('passport'),
-    userController = require('../src/api/controllers/user-controller');
+    userController = require('../src/user/controllers/user-controller'),
+    contributionsController = require('../src/contributions/controllers/contribution-controller');
 
 module.exports = function(app){
 
@@ -8,14 +9,10 @@ module.exports = function(app){
 
     app.get('/user/current', userController.currentUser);
     app.get('/leaderboard', userController.leaderboard);
-//
-//    app.post('/user', userController.registerUser);
-//
-//    app.get('/leaderboard');
-//
-//    app.get('/contributions')
-//
-//    app.put('/contributions/:contibId')
+
+    app.get('/contributions', contributionsController.listContributions);
+    app.post('/contributions', contributionsController.addContribution);
+    app.put('/contributions/:contibId', contributionsController.updateContribution);
 
     app.get('/auth/github', passport.authenticate('github'));
 
