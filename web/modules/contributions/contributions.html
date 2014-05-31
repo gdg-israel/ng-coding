@@ -1,3 +1,7 @@
+<div ui-view>
+	<a ui-sref="contributions.create">Create new</a>
+</div>
+
 <h3>Open Contributions</h3>
 
 <table class="table">
@@ -13,7 +17,7 @@
 			<td>
 				<a href="{{contribution.link}}" target="_blank">{{contribution.title}}</a>
 			</td>
-			<td>{{contribution.complexityLevel}}</td>
+			<td>{{contribution.score}}</td>
 			<td>-</td>
 		</tr>
 	</tbody>
