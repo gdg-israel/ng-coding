@@ -9,7 +9,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="entry in usersScore | orderBy:score:reverse">
+		<tr ng-repeat="entry in usersScore | orderBy:'score':true">
 			<td>
 				<a href="https://github.com/{{entry.username}}?tab=activity">
 					<img ng-src="{{gravatarUrl(entry.gravatarId)}}" alt="{{entry.username}}" class="avatar"/>
