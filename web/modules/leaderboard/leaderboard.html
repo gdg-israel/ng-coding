@@ -2,7 +2,8 @@
 
 <table class="table leader-board">
 	<thead>
-		<tr>
+		<tr><th>
+		</th>
 			<th>Github User</th>
 			<th>Score</th>
 			<th>Last Activity</th>
@@ -10,6 +11,9 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="entry in usersScore | orderBy:'score':true">
+			<td>
+				{{$index+1}}
+			</td>
 			<td>
 				<a href="https://github.com/{{entry.username}}?tab=activity">
 					<img ng-src="{{gravatarUrl(entry.gravatarId)}}" alt="{{entry.username}}" class="avatar"/>
