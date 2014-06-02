@@ -7,7 +7,7 @@ angular
 		require('../contributions'),
 		require('../header')
 	])
-	.config(function ($stateProvider, $urlRouterProvider, LeaderboardView, ContributionsView, CreateContributionView) {
+	.config(function ($stateProvider, $urlRouterProvider, LeaderboardView, ContributionsView, CreateContributionView, ManageContributionView) {
 		$stateProvider
 			.state('leaderboard', {
 				url: '/leaderboard',
@@ -23,6 +23,11 @@ angular
 				url: '/create',
 				template: CreateContributionView,
 				controller: 'CreateContributionCtrl'
+			})
+			.state('contribution', {
+				url:'/contribution/:contribId',
+				template: ManageContributionView,
+				controller: 'ManageContributionCtrl'
 			})
 			.state('prizes', {
 				url: '/prizes',

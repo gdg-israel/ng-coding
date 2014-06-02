@@ -8,11 +8,13 @@ module.exports = function(app){
 //    app.get('/user/:username', userController.user);
 
     app.get('/user/current', userController.currentUser);
+    app.get('user/:userId', userController.findUser)
     app.get('/leaderboard', userController.leaderboard);
 
     app.get('/contributions', contributionsController.listContributions);
     app.post('/contributions', contributionsController.addContribution);
     app.put('/contributions/:contribId', contributionsController.updateContribution);
+    app.get('/contribution/:contribId', contributionsController.getContribution);
 
     app.get('/auth/github', passport.authenticate('github'));
 

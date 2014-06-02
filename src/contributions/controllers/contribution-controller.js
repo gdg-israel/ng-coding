@@ -12,6 +12,16 @@ module.exports = {
                 res.error(err.toString());
             });
     },
+    getContribution: function (req, res) {
+        contributionRepo.findById(req.params.contribId)
+            .then(function(contrib) {
+                res.ok(contrib);
+            })
+
+            .fail(function(err) {
+                res.error(err.toString());
+            });
+    },
 
     addContribution: function(req, res) {
         contributionRepo.addContribution(req.body)
@@ -25,7 +35,7 @@ module.exports = {
     },
 
     updateContribution: function(req, res) {
-        contributionRepo.updateContribution(req.params.contribId, req.body)
+        contributionRepo.updateContribution(req.params.contribId, req.body, req.user)
             .then(function(updatedContrib) {
                 res.ok(updatedContrib);
             })

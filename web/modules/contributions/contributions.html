@@ -19,7 +19,11 @@
 			</td>
 			<td>{{contribution.score}}</td>
 			<td>
-				<button class="btn btn-xs btn-primary work-on-this">Work on this</button>
+				<button ng-if="userAssigned(contribution)" ng-click="unassignMe(contribution)" class='btn btn-xs btn-danger'>Stop Working</button>
+				<button ng-if="!userAssigned(contribution)" ng-click="assignMe(contribution)" class="btn btn-xs btn-primary work-on-this">Work on this</button>
+			</td>
+			<td>
+				<span ng-if="isWinner(contribution)"><i class ="glyphicon glyphicon-ok"></i></span>
 			</td>
 		</tr>
 	</tbody>

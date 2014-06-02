@@ -9,6 +9,15 @@ var config = require('../../../config/config');
  * User model
  * @type {Schema}
  */
+// var contributionSchema = new Schema({
+// 	// contributionId:{
+// 	// 		type: String,
+// 	// 		index:{
+// 	// 			unique:true
+// 	// 		}
+// 	// 	},
+//
+// 	});
 var User = new Schema({
 
 	username: {
@@ -59,6 +68,9 @@ var User = new Schema({
 
 	lastActivity: {
 		type: Object
+	},
+	contributions:{
+		type:[{score: Number }]
 	}
 
 }, { versionKey: false, id: false });

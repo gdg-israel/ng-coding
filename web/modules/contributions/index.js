@@ -7,6 +7,8 @@ angular.module(moduleName, [
 	.controller('ContributionsCtrl', require('./contributionsCtrl'))
 
 	.constant('CreateContributionView', require('./createContribution.html'))
-	.controller('CreateContributionCtrl', require('./createContributionCtrl'));
+	.controller('CreateContributionCtrl', require('./createContributionCtrl'))
 
+	.constant('ManageContributionView', require('./manageContribution.html'))
+	.controller('ManageContributionCtrl', require('./manageContributionCtrl'));
 module.exports = moduleName;

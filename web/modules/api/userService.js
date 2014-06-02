@@ -9,6 +9,13 @@ module.exports = function ($http, $timeout, $q) {
 		current: function () {
 			return $http.get('/user/current');
 		},
+		get: function (id) {
+				var deferred = $q.defer();
+				$http.get('user/' + id).then(function (res) {
+						deferred.resolve(res.data.payload);
+					});
+				return deferred.promise;
+			},
 		all: function () {
 			var deferred = $q.defer();
 			$http.get('/leaderboard').then(function (res) {
