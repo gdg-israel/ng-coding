@@ -1,10 +1,15 @@
 
 <h3>{{contribution.title}}</h3>
 <h3>Score: {{contribution.score}}</h3>
-<input type="text" ng-model="newScore"> <span><button ng-click="updateScore()" class="btn btn-default" name="button">Submit</button></span>
+<span>Edit Score:</span> <input type="text" ng-model="newScore"> <span><button ng-click="updateScore()" class="btn btn-default" name="button">Submit</button></span>
 <p>
+  Description: <br>
   {{contribution.description}}
 </p>
+<p>
+  Link to issue:
+</p>
+<a href="{{contribution.link}}" target='_blank'>{{contribution.link}}</a>
 <table class="table contributions">
   <thead>
     <tr>
@@ -24,6 +29,7 @@
         {{user.lastActivity.repo.name}}
       </td>
       <td>
+        <span ng-if="user.pointsConfirmed">Points Confirmed!</span>
         <button ng-click="makeWinner(user)" class='btn btn-success'>Confirm (gives points)</button>
       </td>
       <!-- <td>
