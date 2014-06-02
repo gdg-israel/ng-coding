@@ -66,7 +66,10 @@ var Contribution = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-
+    finished: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     winners: [{
         type: Schema.Types.ObjectId,
         ref: 'User'

@@ -18,7 +18,7 @@ function handlePromisedResponse(response) {
 
     var docs = response[1];
 
-   if (Array.isArray(docs)) {
+    if (Array.isArray(docs)) {
         return makeDocsPlainObjects(docs);
     }
 
@@ -49,11 +49,13 @@ function updateDoc(doc, obj) {
     return promiseIt(doc.save, undefined, doc);
 }
 
-function assignUser(doc, userId) {
+function assignUser(doc, user) {
+    var userId = user.userId;
     doc.assignees.push(userId);
     return promiseIt(doc.save , undefined, doc);
 }
-function unassignUser(doc, userId) {
+function unassignUser(doc, user) {
+    var userId = user.userId;
     Contribution.update({_id:doc.contributionId},{$pull:{assignees:userId}}, function (err) {
         if(err){
             console.log(err);
@@ -72,9 +74,17 @@ function unassignUser(doc, userId) {
   //   doc.assignees.splice(i,1);
   // }
         // doc.assignees.id(userId).remove();
-  return promiseIt(doc.save, undefined, doc);
+    return promiseIt(doc.save, undefined, doc);
 
 }
+
+function assignedToFinished(doc, user) {
+        var userId = user.userId;
+        unassignUser(doc, user);
+        doc.finished.push(userId);
+        return promiseIt(doc.save, undefined, doc);
+    }
+
 function findAndUpdate(id, obj, user) {
     return Contribution.findById(id).then(handlePromisedDocs)
         .then(function(doc) {
@@ -82,10 +92,14 @@ function findAndUpdate(id, obj, user) {
                 throw new Error('contribution was not found');
             }
             if(obj.assignUser){
-                return assignUser(doc, user.userId);
+                return assignUser(doc, user);
             }
             else if(obj.unassignUser){
-              return unassignUser(doc, user.userId);
+                return unassignUser(doc, user);
+            }
+            else if(obj.assignToFinished){
+              console.log('Assigned to finish');
+                return assignedToFinished(doc, user);
             }
             return updateDoc(doc, obj);
         });
@@ -96,7 +110,7 @@ module.exports = {
         return Contribution.findAll().then(handlePromisedResponse);
     },
     findById: function (id) {
-      return Contribution.findById(id).then(handlePromisedResponse);
+        return Contribution.findById(id).then(handlePromisedResponse);
     },
 
     addContribution: function(contibObj) {

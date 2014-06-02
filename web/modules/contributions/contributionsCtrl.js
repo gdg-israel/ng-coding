@@ -1,8 +1,17 @@
 'use strict';
 
-module.exports = function ($scope, $http, $interval) {
+module.exports = function ($scope, $http, $interval, Contribution) {
 	var userId = localStorage.getItem('userId');
-
+	function containsUserId(collection) {
+		var contains = false;
+		angular.forEach(collection, function (item) {
+			if(item.userId === userId || item === userId){
+				contains = true;
+				return contains;
+			}
+		});
+		return contains;
+	}
 	$scope.update = function () {
 		$http.get('/contributions').property('data').property('payload').assignTo($scope, 'contributions');
 	};
@@ -17,25 +26,28 @@ module.exports = function ($scope, $http, $interval) {
 		$scope.sort.field = field;
 	};
 	$scope.assignMe = function (issue) {
-		$http.put('/contributions/' + issue.contributionId,{assignUser:true}).then(function () {
+		Contribution.assignUser(issue).then(function () {
 			$scope.update();
 		});
 	};
 	$scope.unassignMe = function (issue) {
-		$http.put('/contributions/' + issue.contributionId,{unassignUser:true}).then(function () {
+		Contribution.unassignUser(issue).then(function () {
 			$scope.update();
 		});
 	};
 	$scope.userAssigned = function (contribution) {
-			var assigned = false;
-			angular.forEach(contribution.assignees, function (assign) {
-				if(assign.userId === userId){
-					assigned = true;
-					return assigned;
-				}
-			});
-			return assigned;
+			return containsUserId(contribution.assignees);
 		};
+	$scope.userFinished = function (contribution) {
+		return containsUserId(contribution.finished);
+	};
+	$scope.finish = function (contribution) {
+				Contribution.assignedtoFinished(contribution).then(function () {
+					$scope.update();
+				});
+			};
+
+
 	$scope.isWinner = function (contribution) {
 			var isWinner = false;
 			angular.forEach(contribution.winners, function (winner) {

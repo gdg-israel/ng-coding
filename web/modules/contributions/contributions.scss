@@ -1,6 +1,6 @@
 .contributions {
 	.work-on-this {
-		display: none;
+
 	}
 
 	&.table > tbody > tr > td {
@@ -9,7 +9,7 @@
 
 	tr:hover {
 		.work-on-this {
-			display: inline-block;;
+			background-color:lightblue;
 		}
 	}
 }
