@@ -17,7 +17,7 @@ module.exports = function ($scope, User, $interval) {
 	$scope.refresh();
 
 	var autoUpdateInterval = $interval($scope.refresh, AUTO_UPDATE_INTERVAL);
-	$scope.$on('$destory', function () {
+	$scope.$on('$destroy', function () {
 		$interval.cancel(autoUpdateInterval);
 	});
 };

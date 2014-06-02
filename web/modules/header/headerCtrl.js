@@ -8,9 +8,11 @@ module.exports = function ($scope, $window, User) {
 			localStorage.setItem('username', user.username);
 			$scope.user = user;
 			$scope.userLoggedIn = User.isLoggedIn();
-		}).error(function () {
-			delete localStorage.userId;
-			delete localStorage.username;
-			$window.location.href = '/';
+		}).error(function (err) {
+			if(err.code === 401){
+				delete localStorage.userId;
+				delete localStorage.username;
+				$window.location.href = '/';
+			}
 		});
 };

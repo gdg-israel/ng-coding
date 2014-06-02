@@ -2,7 +2,9 @@
 
 (function () {
 	// Terminal typing emulation code, Copyright (C) 2014, Uri Shaked. ISC License.
-
+	if(localStorage.userId !== undefined){
+			location.replace("/hack.html");
+	}
 	var terminal = document.querySelector('.mini-terminal');
 
 	function toArray(elements) {
