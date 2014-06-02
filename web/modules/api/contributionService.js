@@ -1,14 +1,20 @@
 'use strict';
 module.exports = function ($http) {
     return {
+        all: function () {
+            return $http.get('/contributions').property('data').property('payload');
+        },
         assignUser: function (contribution) {
             return $http.put('/contributions/' + contribution.contributionId,{assignUser:true});
         },
         unassignUser: function (contribution) {
-          return $http.put('/contributions/' + contribution.contributionId,{unassignUser:true});
+            return $http.put('/contributions/' + contribution.contributionId,{unassignUser:true});
         },
         assignedtoFinished: function (contribution) {
-          return $http.put('/contributions/' + contribution.contributionId, {assignToFinished: true});
+            return $http.put('/contributions/' + contribution.contributionId, {assignToFinished: true});
+        },
+        assignToWinner: function (contribution) {
+          return $http.put('/contributions/' + contribution.contributionId, {assignToWinner: true});
         },
     };
 };

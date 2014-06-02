@@ -61,19 +61,16 @@ function unassignUser(doc, user) {
             console.log(err);
         }
     });
-  // var i =-1;
-  // function findAssignedUser(){
-  //
-  //   console.log(i = _.indexOf(doc.assignees, userId));
-  //   if(i>-1){
-  //     return true;
-  //   }
-  //   return false;
-  // }
-  // while(findAssignedUser()){
-  //   doc.assignees.splice(i,1);
-  // }
-        // doc.assignees.id(userId).remove();
+    return promiseIt(doc.save, undefined, doc);
+}
+function assignToWinner(doc, user) {
+    var userId = user.userId;
+    Contribution.update({_id:doc.contributionId},{$pull:{finished:userId}}, function (err) {
+        if(err){
+            console.log(err);
+        }
+    });
+    doc.winners.push(userId);
     return promiseIt(doc.save, undefined, doc);
 
 }
@@ -98,8 +95,10 @@ function findAndUpdate(id, obj, user) {
                 return unassignUser(doc, user);
             }
             else if(obj.assignToFinished){
-              console.log('Assigned to finish');
                 return assignedToFinished(doc, user);
+            }
+            else if(obj.assignToWinner){
+                return assignToWinner(doc, user);
             }
             return updateDoc(doc, obj);
         });

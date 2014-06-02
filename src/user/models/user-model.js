@@ -103,6 +103,9 @@ function promise(func) {
 User.statics.findOneByUsername = function (username) {
 	return promise(this.findOne({ username: username }));
 };
+User.statics.findOneById = function (id) {
+	return promise(this.findOne({ _id: id }));
+};
 
 /**
  * Returns a user doc by email

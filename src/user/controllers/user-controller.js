@@ -13,6 +13,12 @@ module.exports = {
 
         res.ok(req.user);
     },
+		getUser: function (req, res) {
+			User.findOneById(req.params.userId).then(function (user) {
+				console.log(user);
+				res.ok(user);
+			});
+		},
 	leaderboard: function (req, res) {
 		User.getAll()
 			.then(function (allUsers) {

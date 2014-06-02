@@ -11,7 +11,7 @@ module.exports = function ($http, $timeout, $q) {
 		},
 		get: function (id) {
 				var deferred = $q.defer();
-				$http.get('user/' + id).then(function (res) {
+				$http.get('users/' + id).then(function (res) {
 						deferred.resolve(res.data.payload);
 					});
 				return deferred.promise;
