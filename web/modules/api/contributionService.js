@@ -14,7 +14,10 @@ module.exports = function ($http) {
             return $http.put('/contributions/' + contribution.contributionId, {assignToFinished: true});
         },
         assignToWinner: function (contribution) {
-          return $http.put('/contributions/' + contribution.contributionId, {assignToWinner: true});
+            return $http.put('/contributions/' + contribution.contributionId, {assignToWinner: true});
+        },
+        updateScore: function (contribution, newScore) {
+            return $http.put('/contributions/' + contribution.contributionId, {score: newScore});
         },
     };
 };

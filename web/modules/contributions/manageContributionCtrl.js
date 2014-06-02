@@ -8,7 +8,6 @@ module.exports = function ($scope, $http, $stateParams, $interval, User, Contrib
     $scope.$watch('contribution',function (contrib) {
         if(!angular.isUndefined(contrib)){
           angular.forEach(contrib.finished, function (assignee) {
-            console.log(assignee);
             var userId = assignee.userId || assignee;
             User.get(userId).then(function (user) {
               users[user.userId] = user;
@@ -17,6 +16,12 @@ module.exports = function ($scope, $http, $stateParams, $interval, User, Contrib
         }
 
     });
+    $scope.updateScore = function () {
+      var contribution = $scope.contribution;
+      Contribution.updateScore(contribution, $scope.newScore).then(function () {
+          $scope.update();
+      });
+    };
     $scope.makeWinner = function () {
       var contrib = $scope.contribution;
       Contribution.assignToWinner(contrib);

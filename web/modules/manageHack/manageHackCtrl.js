@@ -7,7 +7,6 @@ module.exports = function ($scope, Contribution, $interval) {
     Contribution.all()
       .then(function (contribs) {
         $scope.contributions = contribs;
-        console.log(contribs);
       });
   };
 

@@ -1,5 +1,7 @@
 
 <h3>{{contribution.title}}</h3>
+<h3>Score: {{contribution.score}}</h3>
+<input type="text" ng-model="newScore"> <span><button ng-click="updateScore()" class="btn btn-default" name="button">Submit</button></span>
 <p>
   {{contribution.description}}
 </p>
