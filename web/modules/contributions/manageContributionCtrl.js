@@ -23,11 +23,11 @@ module.exports = function ($scope, $http, $stateParams, $interval, User, Contrib
       });
     };
     $scope.makeWinner = function (user) {
-      var contrib = $scope.contribution;
-      Contribution.assignToWinner(user, contrib).then.function () {
-          user[user.userId].pointsConfirmed = true;
-      };
-      $scope.update();
+        var contrib = $scope.contribution;
+        Contribution.assignToWinner(user, contrib).then(function () {
+            user[user.userId].pointsConfirmed = true;
+            $scope.update();
+        });
     };
     $scope.users = users;
     $scope.update();
