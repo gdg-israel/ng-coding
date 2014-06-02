@@ -50,6 +50,6 @@ function fetchContributionsJob() {
 		});
 	}
 module.exports ={
-	fetchContributionsJob: new CronJob(' */3 * * * *', fetchContributionsJob, null, true),
-	fetchUsersJob: new CronJob('*/2 * * * *', fetchUsersJob, null, true)
+	fetchContributionsJob: new CronJob('* * * * *', fetchContributionsJob, null, true),
+	fetchUsersJob: new CronJob('*/3 * * * *', fetchUsersJob, null, true)
 };

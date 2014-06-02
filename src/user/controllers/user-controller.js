@@ -15,7 +15,6 @@ module.exports = {
     },
 		getUser: function (req, res) {
 			User.findOneById(req.params.userId).then(function (user) {
-				console.log(user);
 				res.ok(user);
 			});
 		},

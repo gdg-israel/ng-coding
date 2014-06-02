@@ -22,9 +22,9 @@ module.exports = function ($scope, $http, $stateParams, $interval, User, Contrib
           $scope.update();
       });
     };
-    $scope.makeWinner = function () {
+    $scope.makeWinner = function (user) {
       var contrib = $scope.contribution;
-      Contribution.assignToWinner(contrib);
+      Contribution.assignToWinner(user, contrib);
       $scope.update();
     };
     $scope.users = users;

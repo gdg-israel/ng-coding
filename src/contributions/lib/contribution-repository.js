@@ -64,7 +64,8 @@ function unassignUser(doc, user) {
     return promiseIt(doc.save, undefined, doc);
 }
 function assignToWinner(doc, user) {
-    var userId = user.userId;
+    var userId = user._id;
+    console.log(userId);
     Contribution.update({_id:doc.contributionId},{$pull:{finished:userId}}, function (err) {
         if(err){
             console.log(err);
@@ -98,7 +99,7 @@ function findAndUpdate(id, obj, user) {
                 return assignedToFinished(doc, user);
             }
             else if(obj.assignToWinner){
-                return assignToWinner(doc, user);
+                return assignToWinner(doc, obj.user);
             }
             return updateDoc(doc, obj);
         });
