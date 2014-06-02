@@ -7,7 +7,7 @@ module.exports = function ($scope, $http, $stateParams, $interval, User, Contrib
     };
     $scope.$watch('contribution',function (contrib) {
         if(!angular.isUndefined(contrib)){
-          angular.forEach(contrib.assignees, function (assignee) {
+          angular.forEach(contrib.finished, function (assignee) {
             console.log(assignee);
             var userId = assignee.userId || assignee;
             User.get(userId).then(function (user) {
