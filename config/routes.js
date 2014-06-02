@@ -21,7 +21,7 @@ module.exports = function(app){
 	app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
 		function (req, res) {
 			// Successful authentication, redirect to the thank you page.
-			res.redirect('/thanks.html');
+			res.redirect('/hack.html');
 		});
 	app.get('/hack', function (req, res) {
 		res.sendfile('./web/hack.html');
